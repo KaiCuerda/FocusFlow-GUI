@@ -1,0 +1,33 @@
+import tkinter as tk
+from tkinter import messagebox
+
+# --- CONFIGURACIÓN DE LA VENTANA ---
+root = tk.Tk()
+root.title("Mi Centro de Control - Enfoque")
+root.geometry("400x300")
+root.configure(bg="#1e1e1e") # Color oscuro para no cansar la vista
+
+# --- LÓGICA DE LA APP ---
+def completar_tarea():
+    tarea = entrada_tarea.get()
+    if tarea:
+        messagebox.showinfo("¡Logrado!", f"Has terminado: {tarea}\n¡Buen trabajo, socio!")
+        entrada_tarea.delete(0, tk.END)
+    else:
+        messagebox.showwarning("Aviso", "Escribe primero qué vas a hacer.")
+
+# --- ELEMENTOS VISUALES (WIDGETS) ---
+titulo = tk.Label(root, text="¿En qué vamos a enfocarnos?", 
+                  fg="white", bg="#1e1e1e", font=("Arial", 14, "bold"))
+titulo.pack(pady=20)
+
+entrada_tarea = tk.Entry(root, font=("Arial", 12), width=30)
+entrada_tarea.pack(pady=10)
+
+boton_hecho = tk.Button(root, text="TAREA COMPLETADA", command=completar_tarea,
+                        bg="#4CAF50", fg="white", font=("Arial", 10, "bold"),
+                        padx=20, pady=10)
+boton_hecho.pack(pady=20)
+
+# --- EJECUTAR LA APP ---
+root.mainloop()
